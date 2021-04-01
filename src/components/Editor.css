@@ -1,0 +1,71 @@
+.CodeMirror {
+  height: 65vh !important;
+  font-family: "Nanum Gothic Coding" !important;
+  font-size: 18px !important;
+}
+
+.language_selecter_button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding: 5px;
+}
+
+.dropdownToggle {
+  width: 150px;
+}
+
+.InputGroup {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 20px;
+  font-weight: 200;
+  width: 60vw;
+  margin-top: 10px;
+}
+
+.InputGroup h3 {
+  font-size: 22px;
+  margin-left: 10px;
+}
+
+.InputGroup button {
+  border: none;
+  padding: 10px 20px;
+  background-color: #b9345a;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.input {
+  margin-left: 25px;
+  margin-right: 30px;
+  width: 50vw !important;
+}
+
+.output {
+  margin-top: 10px;
+  background-color: #0c0909;
+  height: 135px;
+  overflow: scroll;
+}
+
+.output h1 {
+  font-size: 18px;
+  color: red;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+/*# sourceMappingURL=Editor.css.map */
