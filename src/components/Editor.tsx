@@ -37,6 +37,7 @@ const Editor: React.FC<Props> = ({ value, onChange }) => {
   );
   const handleChange = (editor: any, data: any, value: string) => {
     onChange(value);
+    localStorage.setItem("code", value);
   };
   const url = "https://emkc.org/api/v1/piston/execute";
   const code = value;
@@ -48,7 +49,6 @@ const Editor: React.FC<Props> = ({ value, onChange }) => {
       source: code,
       stdin: stdin,
     });
-    localStorage.setItem("code", code);
     dispatch({
       type: actionTypes.SET_CODE,
       cachedcode: value,
