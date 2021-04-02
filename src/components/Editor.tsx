@@ -3,6 +3,8 @@ import axios from "axios";
 import "./Editor.css";
 import "codemirror/lib/codemirror.css";
 import "codemirror/theme/material.css";
+import "codemirror/theme/material-palenight.css";
+import "codemirror/theme/monokai.css";
 import "codemirror/mode/python/python";
 import "codemirror/mode/javascript/javascript";
 import "codemirror/mode/clike/clike";
@@ -13,13 +15,12 @@ import "codemirror/addon/edit/matchbrackets";
 import { useStateValue } from "../ContextApi/UserContext";
 import { actionTypes } from "../ContextApi/reducer.js";
 import {
-  DropdownItem,
-  DropdownMenu,
-  DropdownToggle,
-  Input,
-  Spinner,
-  UncontrolledDropdown,
-} from "reactstrap";
+  FormControl,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+} from "@material-ui/core";
+import { Input, Spinner } from "reactstrap";
 import { Controlled as ControlledEditor } from "react-codemirror2";
 interface Props {
   value: string;
@@ -28,13 +29,13 @@ interface Props {
 const Editor: React.FC<Props> = ({ value, onChange }) => {
   const [{ cachedcode }, dispatch] = useStateValue();
   const [stdin, setStdin] = useState<string>("");
-  const [selectedOption, setSelectedOption] = useState<string>("c");
   const [output, setOutput] = useState();
   const [loading, setLoading] = useState(false);
   const [language, setLanguage] = useState<string>("");
   const [codemirrorlanguage, setCodemirrorLanguage] = useState<string>(
     "text/x-csrc"
   );
+  const lanArray = ["c", "c++", "c#", "Java", "Python", "Typescript"];
   const handleChange = (editor: any, data: any, value: string) => {
     onChange(value);
     localStorage.setItem("code", value);
@@ -58,7 +59,6 @@ const Editor: React.FC<Props> = ({ value, onChange }) => {
   };
 
   const optionSelector = (val: string) => {
-    setSelectedOption(val);
     switch (val) {
       case "c":
         setLanguage("c");
@@ -91,73 +91,49 @@ const Editor: React.FC<Props> = ({ value, onChange }) => {
 
   return (
     <div className="editor-container">
-      <div className="language_selecter_button">
-        <UncontrolledDropdown className="menu">
-          <div>
-            <DropdownToggle
-              className="dropdownToggle"
-              caret
-              color="warning"
-              id="navbarDropdownMenuLink2"
-              type="button"
-            >
-              {selectedOption}
-            </DropdownToggle>
-
-            <DropdownMenu
-              aria-labelledby="navbarDropdownMenuLink2"
-              className="dropdown_scroll"
-            >
-              <li className="dropdown">
-                <DropdownItem onClick={() => optionSelector("c")}>
-                  c
-                </DropdownItem>
-              </li>
-              <li className="dropdown">
-                <DropdownItem onClick={() => optionSelector("c++")}>
-                  c++
-                </DropdownItem>
-              </li>
-              <li className="dropdown">
-                <DropdownItem onClick={() => optionSelector("c#")}>
-                  c#
-                </DropdownItem>
-              </li>
-              <li className="dropdown">
-                <DropdownItem onClick={() => optionSelector("Java")}>
-                  Java
-                </DropdownItem>
-              </li>
-              <li className="dropdown">
-                <DropdownItem onClick={() => optionSelector("Python")}>
-                  Python
-                </DropdownItem>
-              </li>
-              <li className="dropdown">
-                <DropdownItem onClick={() => optionSelector("Typescript")}>
-                  Typescript
-                </DropdownItem>
-              </li>
-            </DropdownMenu>
-          </div>
-        </UncontrolledDropdown>
+      <div className="selector_editor">
+        <div className="code__editor">
+          <ControlledEditor
+            onBeforeChange={handleChange}
+            value={value}
+            options={{
+              lineWrapping: true,
+              lint: true,
+              autoCloseBrackets: true,
+              mode: codemirrorlanguage,
+              theme: "material-palenight",
+              lineNumbers: true,
+              indentWithTabs: true,
+              indentUnit: 4,
+              extraKeys: { "Ctrl-Space": "autocomplete" },
+              matchBrackets: true,
+            }}
+          />
+        </div>
+        <div className="language_selecter_button">
+          <FormControl component="fieldset">
+            <RadioGroup aria-label="gender" name="gender1">
+              {lanArray.map((val) => (
+                <FormControlLabel
+                  style={{
+                    backgroundColor: "lightgray",
+                    color: "black",
+                    padding: "5px 15px",
+                    borderRadius: "10px",
+                    border: "2px solid gray",
+                  }}
+                  value={val}
+                  control={<Radio />}
+                  label={val}
+                  key={val}
+                  onClick={() => optionSelector(val)}
+                />
+              ))}
+            </RadioGroup>
+          </FormControl>
+        </div>
       </div>
-      <ControlledEditor
-        onBeforeChange={handleChange}
-        value={value}
-        options={{
-          lineWrapping: true,
-          lint: true,
-          autoCloseBrackets: true,
-          mode: codemirrorlanguage,
-          theme: "material",
-          lineNumbers: true,
-          indentWithTabs: true,
-          indentUnit: 4,
-          extraKeys: { "Ctrl-Space": "autocomplete" },
-          matchBrackets: true,
-        }}
-      />
+
       <div className="InputGroup">
         <h3>Input</h3>
         <Input
@@ -170,8 +146,10 @@ const Editor: React.FC<Props> = ({ value, onChange }) => {
         <button onClick={fetchData}>RUN</button>
         {loading && <Spinner color="dark" />}
       </div>
-      <div className="output">
-        <h1>{output}</h1>
+      <div style={{ display: "grid", placeItems: "center" }}>
+        <div className="output">
+          <h1>{output}</h1>
+        </div>
       </div>
     </div>
   );

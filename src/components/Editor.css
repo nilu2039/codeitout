@@ -1,17 +1,39 @@
+body {
+  background-color: #f8f8f8 !important;
+}
+
 .CodeMirror {
   height: 65vh !important;
   font-family: "Nanum Gothic Coding" !important;
   font-size: 18px !important;
+  width: 65vw !important;
+  border-radius: 20px !important;
+  padding: 15px !important;
+}
+
+.code__editor {
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+.selector_editor {
+  margin-top: 40px;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  -ms-grid-columns: 99% 1%;
+      grid-template-columns: 99% 1%;
 }
 
 .language_selecter_button {
+  margin-left: -200px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  padding: 5px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .dropdownToggle {
@@ -25,18 +47,22 @@
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   font-size: 20px;
   font-weight: 200;
-  width: 60vw;
+  width: 100vw;
   margin-top: 10px;
 }
 
 .InputGroup h3 {
-  font-size: 22px;
-  margin-left: 10px;
+  color: gray;
+  font-size: 20px;
+  margin-right: -10px;
 }
 
 .InputGroup button {
@@ -55,17 +81,20 @@
 
 .output {
   margin-top: 10px;
-  background-color: #0c0909;
+  width: 90%;
+  border-radius: 10px;
+  background-color: #001133;
   height: 135px;
   overflow: scroll;
 }
 
 .output h1 {
+  padding: 10px 0px 0 15px;
   font-size: 18px;
   color: red;
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 0.5px;
 }
 /*# sourceMappingURL=Editor.css.map */
