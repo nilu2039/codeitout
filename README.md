@@ -4,6 +4,6 @@ To use this project clone the project to a directory.
 
 Run
 
-### 'npm install'
+### `npm install`
 
-### 'npm start'
+### `npm start`
