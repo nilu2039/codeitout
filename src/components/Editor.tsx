@@ -13,6 +13,7 @@ import "codemirror/addon/hint/show-hint.css";
 import "codemirror/addon/edit/closebrackets";
 import "codemirror/addon/edit/matchbrackets";
 import { useStateValue } from "../ContextApi/UserContext";
+import "react-toastify/dist/ReactToastify.css";
 import { actionTypes } from "../ContextApi/reducer.js";
 import {
   FormControl,
@@ -22,6 +23,7 @@ import {
 } from "@material-ui/core";
 import { Input, Spinner } from "reactstrap";
 import { Controlled as ControlledEditor } from "react-codemirror2";
+import { toast } from "react-toastify";
 interface Props {
   value: string;
   onChange: any;
@@ -44,18 +46,24 @@ const Editor: React.FC<Props> = ({ value, onChange }) => {
   const code = value;
 
   const fetchData = async () => {
-    setLoading(true);
-    const { data } = await axios.post(url, {
-      language: language,
-      source: code,
-      stdin: stdin,
-    });
-    dispatch({
-      type: actionTypes.SET_CODE,
-      cachedcode: value,
-    });
-    setLoading(false);
-    setOutput(data.output);
+    if (language) {
+      setLoading(true);
+      const { data } = await axios.post(url, {
+        language: language,
+        source: code,
+        stdin: stdin,
+      });
+      dispatch({
+        type: actionTypes.SET_CODE,
+        cachedcode: value,
+      });
+      setLoading(false);
+      setOutput(data.output);
+    } else
+      return toast("Choose a language", {
+        type: "error",
+        position: "top-left",
+      });
   };
 
   const optionSelector = (val: string) => {
