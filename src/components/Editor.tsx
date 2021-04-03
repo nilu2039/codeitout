@@ -112,7 +112,11 @@ const Editor: React.FC<Props> = ({ value, onChange }) => {
         </div>
         <div className="language_selecter_button">
           <FormControl component="fieldset">
-            <RadioGroup aria-label="gender" name="gender1">
+            <RadioGroup
+              aria-label="gender"
+              name="gender1"
+              className="mobile_responsive"
+            >
               {lanArray.map((val) => (
                 <FormControlLabel
                   style={{
@@ -120,8 +124,9 @@ const Editor: React.FC<Props> = ({ value, onChange }) => {
                     color: "black",
                     padding: "5px 15px",
                     borderRadius: "10px",
-                    border: "2px solid gray",
+                    border: "3px solid gray",
                   }}
+                  className="mobile_responsive_btn"
                   value={val}
                   control={<Radio />}
                   label={val}

@@ -75,3 +75,24 @@ body {
 ::-webkit-scrollbar {
   width: 0.5px;
 }
+
+@media (max-width: 990px) {
+  .selector_editor {
+  }
+  .language_selecter_button {
+    display: grid !important;
+    place-items: center !important;
+    width: 100% !important;
+    background-color: forestgreen;
+  }
+  .mobile_responsive {
+    display: grid !important;
+    place-items: center !important;
+
+    width: 100vw;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr !important;
+  }
+  .mobile_responsive_btn {
+    padding: 0px !important;
+  }
+}

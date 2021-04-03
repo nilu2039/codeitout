@@ -97,4 +97,25 @@ body {
 ::-webkit-scrollbar {
   width: 0.5px;
 }
+
+@media (max-width: 990px) {
+  .language_selecter_button {
+    display: -ms-grid !important;
+    display: grid !important;
+    place-items: center !important;
+    width: 100% !important;
+    background-color: forestgreen;
+  }
+  .mobile_responsive {
+    display: -ms-grid !important;
+    display: grid !important;
+    place-items: center !important;
+    width: 100vw;
+    -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr !important;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr !important;
+  }
+  .mobile_responsive_btn {
+    padding: 0px !important;
+  }
+}
 /*# sourceMappingURL=Editor.css.map */
