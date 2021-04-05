@@ -29,14 +29,14 @@ import MenuBar from "./MenuBar";
 import optionSelector from "./utils/optionSelector";
 interface Props {
   value: string;
-  onChange: any;
+  onChange: React.Dispatch<React.SetStateAction<string>>;
 }
 const Editor: React.FC<Props> = ({ value, onChange }) => {
   const [{ lang, codemirrorlang }, dispatch] = useStateValue();
   const [stdin, setStdin] = useState<string>("");
   const [output, setOutput] = useState();
-  const [loading, setLoading] = useState(false);
-  const [width, setWidth] = useState<any>();
+  const [loading, setLoading] = useState<boolean>(false);
+  const [width, setWidth] = useState<number>();
   const lanArray = ["c", "c++", "c#", "Java", "Python", "Typescript"];
   const handleChange = (editor: any, data: any, value: string) => {
     onChange(value);
@@ -46,7 +46,7 @@ const Editor: React.FC<Props> = ({ value, onChange }) => {
   const url: string = process.env.REACT_APP_URL!;
   const code = value;
 
-  const w: any = useWindowWidth();
+  const w: number = useWindowWidth();
   useEffect(() => {
     setWidth(w);
   }, [w]);
@@ -92,7 +92,7 @@ const Editor: React.FC<Props> = ({ value, onChange }) => {
           />
         </div>
         <div className="language_selecter_button">
-          {width >= 1160 ? (
+          {width! >= 1160 ? (
             <FormControl component="fieldset">
               <RadioGroup
                 aria-label="gender"

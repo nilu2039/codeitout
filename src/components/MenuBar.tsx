@@ -15,13 +15,13 @@ import CloseIcon from "@material-ui/icons/Close";
 import { useStateValue } from "../ContextApi/UserContext";
 import { actionTypes } from "../ContextApi/reducer.js";
 const MenuBar = () => {
-  const [isOpen, setIsopen] = useState(false);
-  const ToggleOpen = () => {
+  const [isOpen, setIsopen] = useState<boolean>(false);
+  const ToggleOpen: () => void = () => {
     setIsopen(!isOpen);
   };
 
   const [{ codemirrorlang }, dispatch] = useStateValue();
-  const [selectedLang, setSelectedLang] = useState("Select a language");
+  const [selectedLang, setSelectedLang] = useState<string>("Select a language");
   const optionSelector = (val: string) => {
     setTimeout(() => {
       setIsopen(!isOpen);
