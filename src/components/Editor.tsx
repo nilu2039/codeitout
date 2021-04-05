@@ -50,9 +50,6 @@ const Editor: React.FC<Props> = ({ value, onChange }) => {
   }, [w]);
   const fetchData = async () => {
     if (lang) {
-      console.log(lang);
-      console.log(codemirrorlang);
-
       setLoading(true);
       const { data } = await axios.post(url, {
         language: lang,
