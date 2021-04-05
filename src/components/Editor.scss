@@ -76,23 +76,23 @@ body {
   width: 0.5px;
 }
 
-@media (max-width: 990px) {
+@media (max-width: 950px) {
   .selector_editor {
+    display: flex !important;
+    flex-direction: column !important;
+    margin-top: 10px !important;
   }
-  .language_selecter_button {
-    display: grid !important;
-    place-items: center !important;
-    width: 100% !important;
-    background-color: forestgreen;
+  .CodeMirror {
+    height: 55vh !important;
+    width: 90vw !important;
   }
-  .mobile_responsive {
-    display: grid !important;
-    place-items: center !important;
-
-    width: 100vw;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr !important;
+  .output {
+    height: 100px !important;
   }
-  .mobile_responsive_btn {
-    padding: 0px !important;
+  .InputGroup {
+    button {
+      padding: 5px 10px;
+      margin-left: -10px;
+    }
   }
 }

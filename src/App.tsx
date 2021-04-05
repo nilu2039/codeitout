@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Editor from "./components/Editor";
-import Test from "./components/Test";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { ToastContainer } from "react-toastify";
 const App: React.FC = () => {

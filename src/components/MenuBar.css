@@ -1,0 +1,33 @@
+.MuiDrawer-paperAnchorRight {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-pack: center !important;
+      -ms-flex-pack: center !important;
+          justify-content: center !important;
+  -webkit-box-align: center !important;
+      -ms-flex-align: center !important;
+          align-items: center !important;
+  width: 250px !important;
+  height: 500px !important;
+  margin-top: 110px !important;
+  margin-right: 20px !important;
+  border-radius: 10px;
+}
+
+@media (max-width: 950px) {
+  .drawer {
+    height: 80px !important;
+    display: -ms-grid !important;
+    display: grid !important;
+    place-items: center !important;
+    margin-left: 200px;
+  }
+  .O_C_btn {
+    margin: 0px !important;
+  }
+  .MuiDrawer-paperAnchorRight {
+    margin-top: 65px !important;
+  }
+}
+/*# sourceMappingURL=MenuBar.css.map */

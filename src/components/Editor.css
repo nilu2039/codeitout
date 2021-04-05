@@ -98,24 +98,27 @@ body {
   width: 0.5px;
 }
 
-@media (max-width: 990px) {
-  .language_selecter_button {
-    display: -ms-grid !important;
-    display: grid !important;
-    place-items: center !important;
-    width: 100% !important;
-    background-color: forestgreen;
+@media (max-width: 950px) {
+  .selector_editor {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-orient: vertical !important;
+    -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+            flex-direction: column !important;
+    margin-top: 10px !important;
   }
-  .mobile_responsive {
-    display: -ms-grid !important;
-    display: grid !important;
-    place-items: center !important;
-    width: 100vw;
-    -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr !important;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr !important;
+  .CodeMirror {
+    height: 55vh !important;
+    width: 90vw !important;
   }
-  .mobile_responsive_btn {
-    padding: 0px !important;
+  .output {
+    height: 100px !important;
+  }
+  .InputGroup button {
+    padding: 5px 10px;
+    margin-left: -10px;
   }
 }
 /*# sourceMappingURL=Editor.css.map */
