@@ -26,6 +26,7 @@ import { Input, Spinner } from "reactstrap";
 import { Controlled as ControlledEditor } from "react-codemirror2";
 import { toast } from "react-toastify";
 import MenuBar from "./MenuBar";
+import optionSelector from "./utils/optionSelector";
 interface Props {
   value: string;
   onChange: any;
@@ -41,7 +42,8 @@ const Editor: React.FC<Props> = ({ value, onChange }) => {
     onChange(value);
     localStorage.setItem("code", value);
   };
-  const url = "https://emkc.org/api/v1/piston/execute";
+
+  const url: string = process.env.REACT_APP_URL!;
   const code = value;
 
   const w: any = useWindowWidth();
@@ -50,9 +52,6 @@ const Editor: React.FC<Props> = ({ value, onChange }) => {
   }, [w]);
   const fetchData = async () => {
     if (lang) {
-      console.log(lang);
-      console.log(codemirrorlang);
-
       setLoading(true);
       const { data } = await axios.post(url, {
         language: lang,
@@ -66,74 +65,6 @@ const Editor: React.FC<Props> = ({ value, onChange }) => {
         type: "error",
         position: "top-left",
       });
-  };
-
-  const optionSelector = (val: string) => {
-    switch (val) {
-      case "c":
-        dispatch({
-          type: actionTypes.SET_CODEMIRRORLANGUAGE,
-          codemirrorlang: "text/x-csrc",
-        });
-        dispatch({
-          type: actionTypes.SET_LANGUAGE,
-          lang: "c",
-        });
-        break;
-      case "c++":
-        dispatch({
-          type: actionTypes.SET_LANGUAGE,
-          lang: "cpp",
-        });
-        dispatch({
-          type: actionTypes.SET_CODEMIRRORLANGUAGE,
-          codemirrorlang: "text/x-c++src",
-        });
-        break;
-      case "c#":
-        dispatch({
-          type: actionTypes.SET_LANGUAGE,
-          lang: "csharp",
-        });
-        dispatch({
-          type: actionTypes.SET_CODEMIRRORLANGUAGE,
-          codemirrorlang: "text/x-csharp",
-        });
-        break;
-      case "Java":
-        dispatch({
-          type: actionTypes.SET_LANGUAGE,
-          lang: "java",
-        });
-        dispatch({
-          type: actionTypes.SET_CODEMIRRORLANGUAGE,
-          codemirrorlang: "text/x-java",
-        });
-        break;
-      case "Python":
-        dispatch({
-          type: actionTypes.SET_LANGUAGE,
-          lang: "python3",
-        });
-        dispatch({
-          type: actionTypes.SET_CODEMIRRORLANGUAGE,
-          codemirrorlang: "text/x-python",
-        });
-        break;
-      case "Typescript":
-        dispatch({
-          type: actionTypes.SET_LANGUAGE,
-          lang: "typescript",
-        });
-        dispatch({
-          type: actionTypes.SET_CODEMIRRORLANGUAGE,
-          codemirrorlang: "text/typescript",
-        });
-        break;
-      default:
-        break;
-    }
-    localStorage.setItem("lang", codemirrorlang);
   };
 
   return (
@@ -182,7 +113,7 @@ const Editor: React.FC<Props> = ({ value, onChange }) => {
                     control={<Radio />}
                     label={val}
                     key={val}
-                    onClick={() => optionSelector(val)}
+                    onClick={() => optionSelector(val, dispatch, actionTypes)}
                   />
                 ))}
               </RadioGroup>

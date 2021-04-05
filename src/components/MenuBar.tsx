@@ -98,6 +98,7 @@ const MenuBar = () => {
     }
     localStorage.setItem("lang", codemirrorlang);
   };
+
   const arr = ["c", "c++", "c#", "Java", "Python", "Typescript"];
   return (
     <div>
